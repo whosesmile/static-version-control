@@ -32,3 +32,11 @@ node depopy.js [path] [-r]
 <script src="http://www.example.com/assets/js/lib/jquery.$9EF2E1BD.js"></script>
 
 这样需要nginx做rewrite规则映射，同时注意，这种情况暂不支持二次执行版本控制处理，如果希望支持，需要你自行修改源码
+
+
+示范：
+下载代码后，可以运行：
+
+node deploy.js . -r
+
+文件夹中的jsp为测试使用
