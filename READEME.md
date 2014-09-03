@@ -1,0 +1,34 @@
+## 这是一个Web文件中的版本处理工具，依托于NODE环境执行的脚本 ##
+
+在你的文件中使用 {{ version }}，作为占位符，目前仅支持script和link，例如:
+
+<script src="http://www.example.com/assets/js/lib/jquery.js?{{version}}"></script>
+
+将会被替换为；
+
+<script src="http://www.example.com/assets/js/lib/jquery.js?$9EF2E1BD.js"></script>
+
+版本控制脚本实际执行的是计算这个文件的MD5，取前8位大写字母作为尾数追加至最尾端。
+
+为了同时支持前端更新和后端更新的非同步更改，版本控制脚本也支持翻译后的格式，即可以二次执行版本控制脚本用于更新版本
+
+
+执行代码：
+
+node depopy.js [path] [-r]
+
+1.path是文件地址，如果是文件夹，将翻译文件夹内的文件，但不会递归处理内部文件夹
+
+2.如果需要递归处理，可以加上-r参数，这样会进行递归查找
+
+3.当前文件进行了后缀判断，只执行jsp文件的翻译，同时对静态文件的实际地址解析写死了规则，需要更改源码以便支持
+
+4.当前脚本中内置了非后缀的翻译格式，会将：
+
+<script src="http://www.example.com/assets/js/lib/jquery.js?{{version}}"></script>
+
+替换为：
+
+<script src="http://www.example.com/assets/js/lib/jquery.$9EF2E1BD.js"></script>
+
+这样需要nginx做rewrite规则映射，同时注意，这种情况暂不支持二次执行版本控制处理，如果希望支持，需要你自行修改源码
