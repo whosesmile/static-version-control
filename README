@@ -1,8 +1,8 @@
 ## 这是一个Web文件中的版本处理工具，依托于NODE环境执行的脚本 ##
 
-在你的文件中使用 {{ version }}，作为占位符，目前仅支持script和link，例如:
+在你的文件中使用 {# version #}，作为占位符，目前仅支持script和link，例如:
 
-<script src="http://www.example.com/assets/js/lib/jquery.js?{{version}}"></script>
+<script src="http://www.example.com/assets/js/lib/jquery.js?{# version #}"></script>
 
 将会被替换为；
 
@@ -25,7 +25,7 @@ node depopy.js [path] [-r]
 
 4.当前脚本中内置了非后缀的翻译格式，会将：
 
-<script src="http://www.example.com/assets/js/lib/jquery.js?{{version}}"></script>
+<script src="http://www.example.com/assets/js/lib/jquery.js?{# version #}"></script>
 
 替换为：
 
