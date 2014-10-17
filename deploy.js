@@ -1,3 +1,4 @@
+/*global console:true, require:true, process:true  */
 /**
  * 依赖
  */
@@ -114,8 +115,8 @@ function rewrite(url) {
 function translate(p) {
   console.log('\nRunning translate:', p);
   var text = readfile(p);
-  var jsReg = /<script\s*.*?src=(['"])(.*?\?({{\s*version\s*}}|\$.+?))\1\s*.*><\/script>/g;
-  var cssReg = /<link\s*.*?href=(['"])(.*?\?({{\s*version\s*}}|\$.+?))\1\s*.*\/?>/g;
+  var jsReg = /<script\s*.*?src=(['"])(.*?\?({#\s*version\s*#}|\$.+?))\1\s*.*><\/script>/g;
+  var cssReg = /<link\s*.*?href=(['"])(.*?\?({#\s*version\s*#}|\$.+?))\1\s*.*\/?>/g;
 
   var html = text.replace(jsReg, function (match, quotes, url) {
     return match.replace(url, suffix(url));
