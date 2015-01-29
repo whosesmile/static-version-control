@@ -113,7 +113,6 @@ function rewrite(url) {
  * @param  {string} path
  */
 function translate(p) {
-  console.log('\nRunning translate:', p);
   var text = readfile(p);
   var jsReg = /<script\s*.*?src=(['"])(.*?\?({#\s*version\s*#}|\$.+?))\1\s*.*><\/script>/g;
   var cssReg = /<link\s*.*?href=(['"])(.*?\?({#\s*version\s*#}|\$.+?))\1\s*.*\/?>/g;
@@ -124,8 +123,10 @@ function translate(p) {
     return match.replace(url, suffix(url));
   });
 
-  writefile(p, html);
-  console.log('File ', p, ' has been translated...\n');
+  if (html !== text) {
+    writefile(p, html);
+    console.log('translate:', p);
+  }
 }
 
 /*!
